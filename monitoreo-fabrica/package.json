@@ -1,16 +1,22 @@
 {
   "name": "monitoreo-fabrica",
   "version": "1.0.0",
+  "description": "Aplicación para monitoreo de fábricas con Node-RED",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "pkg . --targets node16-win-x64,node16-linux-x64 --output monitoreo-fabrica"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "node-red": "^4.0.9"
-  }
+    "node-red": "^3.1.0"
+  },
+  "bin": {
+    "monitoreo-fabrica": "server.js"
+  },
+  "pkg": {
+    "assets": ["flows.json"],
+    "scripts": "server.js"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT"
 }
