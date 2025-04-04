@@ -1,0 +1,177 @@
+[
+    {
+        "id": "b7508ae31983b7a8",
+        "type": "tab",
+        "label": "Flujo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3088c8992958cac9",
+        "type": "function",
+        "z": "b7508ae31983b7a8",
+        "name": "function 1",
+        "func": "msg.payload = { mensaje: \"Hola desde Node-RED\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "3bc00551e580babd"
+            ]
+        ]
+    },
+    {
+        "id": "d82e16e3d7b4a8a7",
+        "type": "http in",
+        "z": "b7508ae31983b7a8",
+        "name": "Obtener datos",
+        "url": "/tu-nodo",
+        "method": "get",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "3088c8992958cac9"
+            ]
+        ]
+    },
+    {
+        "id": "3bc00551e580babd",
+        "type": "http response",
+        "z": "b7508ae31983b7a8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 390,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "68b3f20d389d4056",
+        "type": "http in",
+        "z": "b7508ae31983b7a8",
+        "name": "",
+        "url": "/mensajes",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "9eccf84038af1eb0"
+            ]
+        ]
+    },
+    {
+        "id": "ca1fde8ab9e1f3c1",
+        "type": "http response",
+        "z": "b7508ae31983b7a8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 410,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9eccf84038af1eb0",
+        "type": "function",
+        "z": "b7508ae31983b7a8",
+        "name": "function 2",
+        "func": "msg.payload = { mensaje: \"Hola desde Node-RED\" };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "ca1fde8ab9e1f3c1"
+            ]
+        ]
+    },
+    {
+        "id": "fbfd673ba52b4024",
+        "type": "inject",
+        "z": "b7508ae31983b7a8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "v": "{\"mensaje\":\"Hola desde Node-RED\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "adff1f65ec87fac1"
+            ]
+        ]
+    },
+    {
+        "id": "adff1f65ec87fac1",
+        "type": "http request",
+        "z": "b7508ae31983b7a8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:3005/enviar",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "c8777de9741373ae"
+            ]
+        ]
+    },
+    {
+        "id": "c8777de9741373ae",
+        "type": "debug",
+        "z": "b7508ae31983b7a8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 200,
+        "wires": []
+    }
+]
